@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Anil Mandal | Freelance IT Consultant</title>
+<meta name="description" content="Anil Mandal - Freelance IT Consultant: Web Apps, HRMS, CRM, Power BI, Dashboards."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#e2e8f0;overflow-x:hidden;transition:background .4s,color .4s}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,textarea,select{font-family:inherit}
+img{max-width:100%}
+::selection{background:var(--p);color:#fff}
+::-webkit-scrollbar{width:7px}
+::-webkit-scrollbar-track{background:#111}
+::-webkit-scrollbar-thumb{background:var(--p);border-radius:4px}
+
+:root{
+  --p:#00d4ff;--s:#8b5cf6;--a:#c084fc;
+  --bg:#0a0a0f;--bg2:#12121a;--tx:#e2e8f0;--tm:#94a3b8;
+  --card:rgba(20,20,35,.85);
+  --navbg:rgba(10,10,20,.9);
+}
+
+.W{max-width:1200px;margin:0 auto;padding:0 24px}
+.sec{padding:96px 0}
+.sec-alt{background:var(--bg2)}
+
+.gt{
+  background:linear-gradient(135deg,var(--p),var(--s),var(--a));
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;animation:gsh 4s ease infinite
+}
+@keyframes gsh{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+
+.glass{background:var(--card);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.08)}
+
+.sh{text-align:center;margin-bottom:60px}
+.sh .lbl{font-size:11px;font-weight:700;color:var(--p);text-transform:uppercase;letter-spacing:3px}
+.sh h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,42px);font-weight:700;margin-top:10px}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pb{from{width:0}to{width:100%}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes bounce{0%,100%{transform:translateY(0) translateX(-50%)}40%{transform:translateY(-14px) translateX(-50%)}70%{transform:translateY(-6px) translateX(-50%)}}
+@keyframes wap{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 17px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
+@keyframes confDrop{0%{transform:translateY(-100vh) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+@keyframes skillGrow{from{width:0}}
+
+/* Orbit keyframes for 9 tech chips */
+@keyframes orb0 {from{transform:rotate(0deg)   translateX(150px) rotate(0deg)}   to{transform:rotate(360deg)  translateX(150px) rotate(-360deg)}}
+@keyframes orb1 {from{transform:rotate(40deg)  translateX(150px) rotate(-40deg)} to{transform:rotate(400deg)  translateX(150px) rotate(-400deg)}}
+@keyframes orb2 {from{transform:rotate(80deg)  translateX(130px) rotate(-80deg)} to{transform:rotate(440deg)  translateX(130px) rotate(-440deg)}}
+@keyframes orb3 {from{transform:rotate(120deg) translateX(160px) rotate(-120deg)}to{transform:rotate(480deg)  translateX(160px) rotate(-480deg)}}
+@keyframes orb4 {from{transform:rotate(160deg) translateX(140px) rotate(-160deg)}to{transform:rotate(520deg)  translateX(140px) rotate(-520deg)}}
+@keyframes orb5 {from{transform:rotate(200deg) translateX(155px) rotate(-200deg)}to{transform:rotate(560deg)  translateX(155px) rotate(-560deg)}}
+@keyframes orb6 {from{transform:rotate(240deg) translateX(135px) rotate(-240deg)}to{transform:rotate(600deg)  translateX(135px) rotate(-600deg)}}
+@keyframes orb7 {from{transform:rotate(280deg) translateX(145px) rotate(-280deg)}to{transform:rotate(640deg)  translateX(145px) rotate(-640deg)}}
+@keyframes orb8 {from{transform:rotate(320deg) translateX(130px) rotate(-320deg)}to{transform:rotate(680deg)  translateX(130px) rotate(-680deg)}}
+
+.rev{opacity:0;transform:translateY(34px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rev.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* LOADING */
+#ld{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);transition:opacity .6s,visibility .6s}
+#ld.out{opacity:0;visibility:hidden;pointer-events:none}
+.ls{width:58px;height:58px;border:3px solid rgba(255,255,255,.08);border-top:3px solid var(--p);border-radius:50%;animation:spin .8s linear infinite}
+.lt{margin-top:20px;font-family:'Space Grotesk',sans-serif;font-size:14px;color:var(--tm);letter-spacing:3px;text-transform:uppercase}
+.lb{width:200px;height:3px;background:rgba(255,255,255,.08);border-radius:3px;margin-top:14px;overflow:hidden}
+.lbf{height:100%;background:linear-gradient(135deg,var(--p),var(--s));animation:pb 1.4s ease forwards;border-radius:3px}
+
+/* NAVBAR */
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 0;transition:all .4s}
+#nav.scr{padding:10px 0;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05)}
+.nav-in{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700}
+.logo em{font-style:normal;color:var(--tm)}
+.links{display:flex;align-items:center;gap:28px}
+.links a{font-size:14px;font-weight:500;color:var(--tm);transition:color .3s}
+.links a:hover{color:var(--p)}
+.hire-cta{padding:9px 22px;border-radius:50px;color:#fff !important;font-weight:600 !important;font-size:13px !important;background:linear-gradient(135deg,var(--p),var(--s)) !important;transition:all .3s !important}
+.hire-cta:hover{opacity:.85;transform:translateY(-1px)}
+.ham{display:none;flex-direction:column;gap:5px;padding:4px}
+.ham span{width:24px;height:2px;background:var(--tx);border-radius:2px;transition:all .3s}
+#mob-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:28px;background:var(--bg)}
+#mob-menu.open{display:flex}
+#mob-menu a{font-size:20px;font-weight:600;color:var(--tm)}
+#mob-menu a:hover{color:var(--p)}
+.mob-close{position:absolute;top:24px;right:24px;font-size:24px;color:var(--tm)}
+
+/* THEME TOGGLE */
+#th-bar{position:fixed;right:12px;top:50%;transform:translateY(-50%);z-index:900;display:flex;flex-direction:column;gap:6px}
+.th-btn{width:22px;height:22px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:all .3s;position:relative}
+.th-btn.act{border-color:#fff;transform:scale(1.15)}
+.th-btn[title]:hover::after{content:attr(title);position:absolute;right:30px;top:50%;transform:translateY(-50%);background:#111;color:#fff;padding:3px 8px;border-radius:4px;font-size:11px;white-space:nowrap;pointer-events:none}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+#particle-canvas{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero-in{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding-top:80px}
+.hero-tag{font-size:11px;font-weight:700;color:var(--p);text-transform:uppercase;letter-spacing:4px;margin-bottom:16px}
+.hero-h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,5vw,60px);font-weight:700;line-height:1.1;margin-bottom:16px}
+.hero-sub{font-size:16px;color:var(--tm);margin-bottom:32px;line-height:1.7;max-width:480px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-p{padding:13px 30px;border-radius:50px;font-weight:600;font-size:14px;color:#fff;background:linear-gradient(135deg,var(--p),var(--s));transition:all .3s;display:inline-flex;align-items:center;gap:8px}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.btn-o{padding:13px 30px;border-radius:50px;font-weight:600;font-size:14px;border:1.5px solid var(--p);color:var(--p);transition:all .3s}
+.btn-o:hover{background:var(--p);color:#fff;transform:translateY(-2px)}
+.tw-cursor{animation:blink .7s step-end infinite}
+/* THREE.JS HERO WRAPPER */
+.hero-3d{display:flex;align-items:center;justify-content:center;min-height:420px}
+.three-wrap{position:relative;width:380px;height:380px;display:flex;align-items:center;justify-content:center}
+/* No outer spin rings */
+/* Soft glow behind canvas */
+.three-glow{
+  position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at center,rgba(0,212,255,.1) 0%,rgba(139,92,246,.07) 40%,transparent 70%);
+  pointer-events:none
+}
+#three-c{width:380px;height:380px;display:block;pointer-events:none}
+/* AM center badge */
+.three-am{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:114px;height:114px;border-radius:50%;
+  background:linear-gradient(135deg,var(--p),var(--s));
+  padding:2.5px;z-index:4;
+  box-shadow:0 0 30px rgba(0,212,255,.4),0 0 70px rgba(139,92,246,.25);
+  animation:amPulse 3s ease-in-out infinite
+}
+.three-am-inner{
+  width:100%;height:100%;border-radius:50%;
+  background:radial-gradient(circle at 40% 35%,#0e0e1e,#050510);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden
+}
+.three-am-inner img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:top center;
+  border-radius:50%
+}
+.am-fallback{
+  font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700;
+  color:var(--p);letter-spacing:-1px;align-items:center;justify-content:center
+}
+@keyframes amPulse{
+  0%,100%{box-shadow:0 0 28px rgba(0,212,255,.4),0 0 60px rgba(139,92,246,.2)}
+  50%{box-shadow:0 0 42px rgba(0,212,255,.65),0 0 90px rgba(139,92,246,.38)}
+}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:bounce 2s ease infinite}
+.hero-scroll span{font-size:10px;color:var(--tm);letter-spacing:2px;text-transform:uppercase}
+.hero-scroll i{color:var(--tm);font-size:14px}
+
+/* ═══ ABOUT ═══════════════════════════════════════════════════════════ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+
+/* --- Profile Photo with orbit --- */
+.profile-wrap{position:relative;width:360px;height:360px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+
+/* Outer orbit ring glow */
+.profile-wrap::before{
+  content:'';position:absolute;inset:-6px;border-radius:50%;
+  background:conic-gradient(var(--p),var(--s),var(--a),var(--p));
+  animation:spin 8s linear infinite;
+  mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#fff calc(100% - 2px));
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#fff calc(100% - 2px));
+  opacity:.5
+}
+
+/* Photo circle */
+.photo-circle{
+  position:relative;width:200px;height:200px;border-radius:50%;
+  background:linear-gradient(135deg,var(--p),var(--s));
+  padding:3px;z-index:2;flex-shrink:0;
+  box-shadow:0 0 40px rgba(0,212,255,.25),0 0 80px rgba(139,92,246,.15)
+}
+.photo-inner{
+  width:100%;height:100%;border-radius:50%;overflow:hidden;
+  background:var(--bg2);display:flex;align-items:center;justify-content:center
+}
+.photo-inner img{width:100%;height:100%;object-fit:cover;object-position:top}
+.photo-fallback{font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:700;color:var(--p)}
+
+/* Tech chip orbit */
+.tech-orbit{position:absolute;inset:0;border-radius:50%}
+.tech-chip{
+  position:absolute;top:50%;left:50%;
+  padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;
+  background:rgba(10,10,20,.85);border:1px solid rgba(255,255,255,.15);
+  color:var(--tx);white-space:nowrap;letter-spacing:.3px;
+  backdrop-filter:blur(6px);
+  box-shadow:0 2px 12px rgba(0,0,0,.4)
+}
+.tech-chip:nth-child(1){animation:orb0 12s linear infinite}
+.tech-chip:nth-child(2){animation:orb1 14s linear infinite}
+.tech-chip:nth-child(3){animation:orb2 11s linear infinite}
+.tech-chip:nth-child(4){animation:orb3 13s linear infinite}
+.tech-chip:nth-child(5){animation:orb4 15s linear infinite}
+.tech-chip:nth-child(6){animation:orb5 10s linear infinite}
+.tech-chip:nth-child(7){animation:orb6 16s linear infinite}
+.tech-chip:nth-child(8){animation:orb7 12.5s linear infinite}
+.tech-chip:nth-child(9){animation:orb8 13.5s linear infinite}
+
+.about-text p{color:var(--tm);line-height:1.8;margin-bottom:16px;font-size:15px}
+.stats-row{display:flex;gap:24px;margin-top:28px;flex-wrap:wrap}
+.stat-box{text-align:center;min-width:80px}
+.stat-num{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;color:var(--p)}
+.stat-lbl{font-size:11px;color:var(--tm);text-transform:uppercase;letter-spacing:1px}
+.skills-wrap{margin-top:32px}
+.skill-row{margin-bottom:16px}
+.skill-hd{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;font-weight:600}
+.skill-bar{height:7px;background:rgba(255,255,255,.08);border-radius:7px;overflow:hidden}
+.skill-fill{height:100%;border-radius:7px;width:0;background:linear-gradient(90deg,var(--p),var(--s));transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+
+/* SERVICES */
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px}
+.srv-card{padding:28px;border-radius:16px;cursor:default;transition:transform .15s,box-shadow .15s;transform-style:preserve-3d}
+.srv-card:hover{box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.srv-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px}
+.srv-card h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;margin-bottom:8px}
+.srv-card p{font-size:13px;color:var(--tm);line-height:1.7}
+
+/* PORTFOLIO */
+.pfilters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.fb{padding:7px 18px;border-radius:50px;font-size:12px;font-weight:600;border:1.5px solid rgba(255,255,255,.12);color:var(--tm);transition:all .3s;text-transform:uppercase;letter-spacing:.5px}
+.srch-row{display:flex;justify-content:flex-end;margin-bottom:20px}
+#sin{padding:9px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:var(--tx);font-size:13px;outline:none;width:240px}
+#sin:focus{border-color:var(--p)}
+.ptbl{width:100%;border-collapse:collapse;font-size:13px}
+.ptbl th{padding:12px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--tm);border-bottom:1px solid rgba(255,255,255,.06)}
+.ptbl td{padding:13px 14px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;color:var(--tx)}
+.ptbl tbody tr{transition:background .2s}
+.pn{font-weight:600;font-size:13.5px}
+.pc{padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700;background:rgba(255,255,255,.07);color:var(--tm)}
+.pt{color:var(--tm);font-size:12px}
+.pd{font-size:12px;color:var(--tm)}
+.vbtn{padding:5px 14px;border-radius:6px;font-size:11px;font-weight:700;background:rgba(255,255,255,.07);color:var(--tx);transition:all .3s;display:inline-flex;align-items:center;gap:5px}
+.vbtn:hover{color:var(--p);background:rgba(255,255,255,.12)}
+.nores{text-align:center;color:var(--tm);padding:30px !important}
+.rowin{animation:fadeUp .4s ease both}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.cc-list{display:flex;flex-direction:column;gap:14px;margin-bottom:32px}
+.cc{display:flex;align-items:center;gap:14px;padding:16px;border-radius:12px;transition:transform .2s}
+.cc:hover{transform:translateX(4px)}
+.cc .ci{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.cc-info{display:flex;flex-direction:column}
+.cc-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--tm);margin-bottom:2px}
+.cc-val{font-size:14px;font-weight:500}
+.cform{padding:32px;border-radius:20px}
+.cform h3{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;margin-bottom:24px}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:12px;font-weight:600;color:var(--tm);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.fg input,.fg textarea,.fg select{width:100%;padding:11px 14px;border-radius:8px;border:1.5px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:var(--tx);font-size:14px;transition:border .3s;outline:none}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--p)}
+.fg textarea{resize:vertical;min-height:110px}
+.sub-btn{width:100%;padding:13px;border-radius:10px;font-weight:700;font-size:15px;color:#fff;background:linear-gradient(135deg,var(--p),var(--s));transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px}
+.sub-btn:hover{opacity:.85;transform:translateY(-1px)}
+#confbox{position:fixed;inset:0;pointer-events:none;z-index:8888;overflow:hidden}
+.cp{position:absolute;top:0}
+
+/* FOOTER */
+footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.06);text-align:center}
+footer p{color:var(--tm);font-size:13px}
+.foot-soc{display:flex;justify-content:center;gap:18px;margin-bottom:18px}
+.foot-soc a{width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:var(--tm);font-size:14px;transition:all .3s}
+.foot-soc a:hover{border-color:var(--p);color:var(--p);transform:translateY(-2px)}
+
+/* WHATSAPP */
+#wa{position:fixed;bottom:28px;left:28px;z-index:800;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;background:#25D366;animation:wap 2s infinite;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s}
+#wa:hover{transform:scale(1.12)}
+
+@media(max-width:960px){
+  .hero-in,.about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .hero-3d{display:none}
+  #th-bar{right:8px}
+  .links{display:none}
+  .ham{display:flex}
+  .about-grid{text-align:center}
+  .profile-wrap{margin-bottom:20px}
+  .stats-row{justify-content:center}
+}
+@media(max-width:600px){
+  .srv-grid{grid-template-columns:1fr}
+  .profile-wrap{width:300px;height:300px}
+  .photo-circle{width:160px;height:160px}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="ld">
+  <div class="ls"></div>
+  <div class="lt">Loading...</div>
+  <div class="lb"><div class="lbf"></div></div>
+</div>
+
+<!-- CONFETTI -->
+<div id="confbox"></div>
+
+<!-- WHATSAPP -->
+<a id="wa" href="https://wa.me/917503699636" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <div class="W nav-in">
+    <div class="logo"><span class="gt">Anil</span><em> Mandal</em></div>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+      <a href="https://wa.me/917503699636" target="_blank" class="hire-cta">Hire Me</a>
+    </div>
+    <button class="ham" onclick="document.getElementById('mob-menu').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mob-menu">
+  <button class="mob-close" onclick="document.getElementById('mob-menu').classList.remove('open')"><i class="fas fa-times"></i></button>
+  <a href="#about"     onclick="document.getElementById('mob-menu').classList.remove('open')">About</a>
+  <a href="#services"  onclick="document.getElementById('mob-menu').classList.remove('open')">Services</a>
+  <a href="#portfolio" onclick="document.getElementById('mob-menu').classList.remove('open')">Portfolio</a>
+  <a href="#contact"   onclick="document.getElementById('mob-menu').classList.remove('open')">Contact</a>
+  <a href="https://wa.me/917503699636" target="_blank" class="hire-cta">Hire Me</a>
+</div>
+
+<!-- THEME TOGGLE -->
+<div id="th-bar">
+  <button class="th-btn act" style="background:#00d4ff" data-t="cyber"   title="Cyber Dark"   onclick="setTheme('cyber')"></button>
+  <button class="th-btn"     style="background:#f59e0b" data-t="solar"   title="Solar Light"  onclick="setTheme('solar')"></button>
+  <button class="th-btn"     style="background:#0ea5e9" data-t="ocean"   title="Ocean Depth"  onclick="setTheme('ocean')"></button>
+  <button class="th-btn"     style="background:#ef4444" data-t="inferno" title="Inferno Red"  onclick="setTheme('inferno')"></button>
+  <button class="th-btn"     style="background:#22c55e" data-t="nature"  title="Nature Green" onclick="setTheme('nature')"></button>
+</div>
+
+<!-- ═══ HERO ═══════════════════════════════════════════════════════════ -->
+<section id="hero">
+  <canvas id="particle-canvas"></canvas>
+  <div class="W hero-in">
+    <div>
+      <div class="hero-tag rev">Freelance IT Consultant</div>
+      <h1 class="hero-h1 rev d1">
+        Hi, I'm <span class="gt">Anil Mandal</span><br/>
+        <span id="tw-el"></span><span class="tw-cursor">|</span>
+      </h1>
+      <p class="hero-sub rev d2">Building scalable web solutions, automation tools, and data-driven dashboards for businesses across India and beyond.</p>
+      <div class="hero-btns rev d3">
+        <a href="#portfolio" class="btn-p">View My Work <i class="fas fa-arrow-right"></i></a>
+        <a href="#contact"   class="btn-o">Let's Talk</a>
+      </div>
+    </div>
+    <div class="hero-3d">
+      <div class="three-wrap">
+        <div class="three-glow"></div>
+        <canvas id="three-c"></canvas>
+        <div class="three-am">
+          <div class="three-am-inner">
+            <img src="anil.jpg" alt="Anil Mandal"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <span class="am-fallback" style="display:none">AM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ════════════════════════════════════════════════════════════ -->
+<section id="about" class="sec sec-alt">
+  <div class="W">
+    <div class="sh rev">
+      <div class="lbl">Who I Am</div>
+      <h2>About <span class="gt">Me</span></h2>
+    </div>
+    <div class="about-grid">
+
+      <!-- Left: Photo + Orbit -->
+      <div class="rev d1" style="display:flex;align-items:center;justify-content:center">
+        <div class="profile-wrap">
+
+          <!-- Spinning gradient outer ring (CSS ::before) -->
+
+          <!-- Centered photo -->
+          <div class="photo-circle">
+            <div class="photo-inner">
+              <!-- Put your photo file named "anil.jpg" in the same folder as index.html -->
+              <img src="anil.jpg" alt="Anil Mandal"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+              <div class="photo-fallback" style="display:none">AM</div>
+            </div>
+          </div>
+
+          <!-- Orbiting tech chips -->
+          <div class="tech-orbit" id="tech-orbit">
+            <span class="tech-chip">React</span>
+            <span class="tech-chip">SQL</span>
+            <span class="tech-chip">CSS3</span>
+            <span class="tech-chip">Node.js</span>
+            <span class="tech-chip">Python</span>
+            <span class="tech-chip">HTML5</span>
+            <span class="tech-chip">Power BI</span>
+            <span class="tech-chip">Figma</span>
+            <span class="tech-chip">API</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Text + Stats + Skills -->
+      <div class="rev d2">
+        <div class="about-text">
+          <p>I'm <strong>Anil Mandal</strong>, a Freelance IT Consultant with <strong>8+ years</strong> of experience building enterprise-grade web applications, HR systems, CRM tools, and BI dashboards for clients across various industries.</p>
+          <p>Passionate about transforming business challenges into elegant technical solutions — from custom HRMS implementations to real-time Power BI analytics that drive smarter decisions.</p>
+          <p>Based in <strong>New Delhi, India</strong> — available for remote projects globally.</p>
+        </div>
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-num gt" data-count="8">0</div>
+            <div class="stat-lbl">Years Exp.</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num gt" data-count="120">0</div>
+            <div class="stat-lbl">Projects</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num gt" data-count="95">0</div>
+            <div class="stat-lbl">Clients</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num gt" data-count="100">0</div>
+            <div class="stat-lbl">% Happy</div>
+          </div>
+        </div>
+        <div class="skills-wrap" id="skills-wrap"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ════════════════════════════════════════════════════════ -->
+<section id="services" class="sec">
+  <div class="W">
+    <div class="sh rev">
+      <div class="lbl">What I Do</div>
+      <h2>My <span class="gt">Services</span></h2>
+    </div>
+    <div class="srv-grid" id="srv-grid"></div>
+  </div>
+</section>
+
+<!-- ═══ PORTFOLIO ═══════════════════════════════════════════════════════ -->
+<section id="portfolio" class="sec sec-alt">
+  <div class="W">
+    <div class="sh rev">
+      <div class="lbl">My Work</div>
+      <h2>Project <span class="gt">Portfolio</span></h2>
+    </div>
+    <div class="pfilters rev" id="pfilters"></div>
+    <div class="srch-row rev d1">
+      <input type="text" id="sin" placeholder="Search projects…" oninput="filterP()"/>
+    </div>
+    <div class="glass" style="border-radius:16px;overflow:hidden">
+      <table class="ptbl">
+        <thead>
+          <tr><th>Project</th><th>Category</th><th>Tech Stack</th><th>Year</th><th>Link</th></tr>
+        </thead>
+        <tbody id="ptb"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ══════════════════════════════════════════════════════════ -->
+<section id="contact" class="sec">
+  <div class="W">
+    <div class="sh rev">
+      <div class="lbl">Get In Touch</div>
+      <h2>Contact <span class="gt">Me</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="rev d1">
+        <p style="color:var(--tm);margin-bottom:24px;line-height:1.8">Have a project in mind? Let's talk! Available for freelance work and consulting engagements.</p>
+        <div class="cc-list" id="cc-list"></div>
+        <div class="foot-soc" style="justify-content:flex-start;margin-top:8px">
+          <a href="https://linkedin.com/in/anilmandal-16997386" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://wa.me/917503699636" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:mandal.anil23@gmail.com"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="rev d2">
+        <div class="glass cform">
+          <h3>Send a Message</h3>
+          <form onsubmit="doSubmit(event)">
+            <div class="fg"><label>Your Name</label><input type="text" placeholder="e.g. Rahul Sharma" required/></div>
+            <div class="fg"><label>Email Address</label><input type="email" placeholder="rahul@company.com" required/></div>
+            <div class="fg">
+              <label>Service Needed</label>
+              <select>
+                <option>Web Application Development</option>
+                <option>HRMS Implementation</option>
+                <option>CRM Solution</option>
+                <option>Power BI Dashboard</option>
+                <option>API Integration</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="fg"><label>Message</label><textarea placeholder="Describe your project…" required></textarea></div>
+            <button type="submit" class="sub-btn" id="subbtn">Send Message <i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="W">
+    <div class="foot-soc">
+      <a href="https://linkedin.com/in/anilmandal-16997386" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://wa.me/917503699636" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="mailto:mandal.anil23@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <p>&copy; 2026 Anil Mandal &bull; Freelance IT Consultant &bull; Made with <span style="color:#ef4444">&#10084;</span> in India</p>
+  </div>
+</footer>
+
+<script>
+/* ══ THEMES ══════════════════════════════════════════════════════════ */
+var TH = {
+  cyber:   {p:'#00d4ff',s:'#8b5cf6',a:'#c084fc',bg:'#0a0a0f',bg2:'#12121a',tx:'#e2e8f0',tm:'#94a3b8',card:'rgba(20,20,35,.85)',navbg:'rgba(10,10,20,.9)'},
+  solar:   {p:'#f59e0b',s:'#ef4444',a:'#fb923c',bg:'#fefce8',bg2:'#fff7ed',tx:'#1c1917',tm:'#78716c',card:'rgba(255,255,255,.85)',navbg:'rgba(254,252,232,.95)'},
+  ocean:   {p:'#0ea5e9',s:'#06b6d4',a:'#67e8f9',bg:'#0c1a2e',bg2:'#0f2339',tx:'#e0f2fe',tm:'#7dd3fc',card:'rgba(14,30,55,.85)',navbg:'rgba(12,26,46,.95)'},
+  inferno: {p:'#ef4444',s:'#f97316',a:'#fbbf24',bg:'#0f0505',bg2:'#1a0808',tx:'#fef2f2',tm:'#fca5a5',card:'rgba(30,10,10,.85)',navbg:'rgba(15,5,5,.95)'},
+  nature:  {p:'#22c55e',s:'#16a34a',a:'#86efac',bg:'#021106',bg2:'#052010',tx:'#f0fdf4',tm:'#86efac',card:'rgba(5,25,12,.85)',navbg:'rgba(2,17,6,.95)'}
+};
+var curT = 'cyber';
+
+function setTheme(k) {
+  curT = k;
+  var t = TH[k];
+  var r = document.documentElement.style;
+  r.setProperty('--p',   t.p);
+  r.setProperty('--s',   t.s);
+  r.setProperty('--a',   t.a);
+  r.setProperty('--bg',  t.bg);
+  r.setProperty('--bg2', t.bg2);
+  r.setProperty('--tx',  t.tx);
+  r.setProperty('--tm',  t.tm);
+  r.setProperty('--card',t.card);
+  r.setProperty('--navbg',t.navbg);
+  document.body.style.background = t.bg;
+  document.body.style.color = t.tx;
+
+  var ds = document.getElementById('dyn-style');
+  if (!ds) { ds = document.createElement('style'); ds.id = 'dyn-style'; document.head.appendChild(ds); }
+  ds.textContent =
+    '#nav.scr{background:'+t.navbg+' !important}\n' +
+    '.ptbl tbody tr:hover{background:'+t.p+'18 !important}\n' +
+    '.fb.on,.fb:hover{background:'+t.p+';border-color:'+t.p+';color:#fff !important}\n' +
+    '::selection{background:'+t.p+'}\n';
+
+  document.querySelectorAll('.th-btn').forEach(function(b){
+    b.classList.toggle('act', b.dataset.t===k);
+  });
+
+  buildContactCards(t);
+  restartParticles(t);
+
+  if (window._three) {
+    window._three.mat.color.set(t.p);
+    window._three.mat2.color.set(t.s);
+    window._three.pl.color.set(t.p);
+    window._three.pl2.color.set(t.s);
+    // AM badge color update
+    var amInner = document.querySelector('.three-am-inner');
+    if (amInner) amInner.style.color = t.p;
+  }
+}
+
+/* ══ CONTACT CARDS ═══════════════════════════════════════════════════ */
+function buildContactCards(t) {
+  var el = document.getElementById('cc-list');
+  if (!el) return;
+  var items = [
+    {href:'https://wa.me/917503699636',              ibg:'rgba(37,211,102,.15)', ic:'#25D366',  fa:'fab fa-whatsapp',      lbl:'WhatsApp', val:'+91-7503699636'},
+    {href:'tel:+917503699636',                        ibg:t.p+'22',              ic:t.p,        fa:'fas fa-phone',         lbl:'Phone',    val:'+91-7503699636'},
+    {href:'mailto:mandal.anil23@gmail.com',           ibg:t.s+'22',              ic:t.s,        fa:'fas fa-envelope',      lbl:'Email',    val:'mandal.anil23@gmail.com'},
+    {href:'https://linkedin.com/in/anilmandal-16997386', ibg:'rgba(10,102,194,.15)', ic:'#0A66C2', fa:'fab fa-linkedin-in', lbl:'LinkedIn', val:'anilmandal-16997386'},
+    {href:'#',                                        ibg:t.a+'22',              ic:t.a,        fa:'fas fa-location-dot', lbl:'Location', val:'New Delhi, India'}
+  ];
+  el.innerHTML = items.map(function(c) {
+    return '<a href="'+c.href+'" target="_blank" class="cc glass" style="text-decoration:none">' +
+      '<div class="ci" style="background:'+c.ibg+';color:'+c.ic+'"><i class="'+c.fa+'"></i></div>' +
+      '<div class="cc-info"><div class="cc-lbl">'+c.lbl+'</div><div class="cc-val">'+c.val+'</div></div>' +
+    '</a>';
+  }).join('');
+}
+
+/* ══ PARTICLES ══════════════════════════════════════════════════════ */
+var _pAF = null;
+function restartParticles(t) {
+  if (_pAF) { cancelAnimationFrame(_pAF); _pAF = null; }
+  var canvas = document.getElementById('particle-canvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W, H, pts = [];
+  var hx = t.p.replace('#','');
+  var R = parseInt(hx.slice(0,2),16)||0;
+  var G = parseInt(hx.slice(2,4),16)||212;
+  var B = parseInt(hx.slice(4,6),16)||255;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  var _resizeHandler = function(){ resize(); };
+  window.addEventListener('resize', _resizeHandler);
+
+  pts = [];
+  for (var i=0; i<80; i++) {
+    pts.push({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.5, vy:(Math.random()-.5)*.5, r:1.2+Math.random()*2});
+  }
+
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+    for (var i=0; i<pts.length; i++) {
+      var p=pts[i];
+      p.x+=p.vx; p.y+=p.vy;
+      if (p.x<0||p.x>W) p.vx*=-1;
+      if (p.y<0||p.y>H) p.vy*=-1;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba('+R+','+G+','+B+',.5)';
+      ctx.fill();
+      for (var j=i+1; j<pts.length; j++) {
+        var q=pts[j], dx=p.x-q.x, dy=p.y-q.y, d=Math.sqrt(dx*dx+dy*dy);
+        if (d<120) {
+          ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y);
+          ctx.strokeStyle='rgba('+R+','+G+','+B+','+(1-d/120)*.18+')';
+          ctx.lineWidth=.8; ctx.stroke();
+        }
+      }
+    }
+    _pAF = requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+/* ══ TYPEWRITER ══════════════════════════════════════════════════════ */
+var _twPhrases = ['I Build Web Apps','I Automate Workflows','I Design Dashboards','I Deliver Results'];
+var _twI=0, _twC=0, _twDel=false;
+function initTW() {
+  var el = document.getElementById('tw-el');
+  if (!el) return;
+  (function tick() {
+    var phrase = _twPhrases[_twI];
+    if (!_twDel) {
+      _twC++;
+      el.textContent = phrase.slice(0,_twC);
+      if (_twC >= phrase.length) { _twDel=true; setTimeout(tick,1800); return; }
+      setTimeout(tick,80);
+    } else {
+      _twC--;
+      el.textContent = phrase.slice(0,_twC);
+      if (_twC<=0) { _twDel=false; _twI=(_twI+1)%_twPhrases.length; setTimeout(tick,400); return; }
+      setTimeout(tick,40);
+    }
+  })();
+}
+
+/* ══ THREE.JS ════════════════════════════════════════════════════════ */
+function initThree() {
+  var canvas = document.getElementById('three-c');
+  if (!canvas || typeof THREE==='undefined') return;
+  var t = TH[curT];
+
+  var scene = new THREE.Scene();
+  // NO background – transparent so particles show through
+
+  var cam = new THREE.PerspectiveCamera(55,1,.1,100);
+  cam.position.z = 4.5;
+
+  var renderer = new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+  renderer.setSize(380,380);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.setClearColor(0x000000,0); // fully transparent
+
+  // Main icosahedron (wireframe)
+  var geo  = new THREE.IcosahedronGeometry(1.55,1);
+  var mat  = new THREE.MeshPhongMaterial({color:new THREE.Color(t.p),wireframe:true,transparent:true,opacity:.85});
+  var mesh = new THREE.Mesh(geo,mat);
+  scene.add(mesh);
+
+  // Second smaller icosahedron (inner glow layer)
+  var geo2 = new THREE.IcosahedronGeometry(1.0,0);
+  var mat2 = new THREE.MeshPhongMaterial({color:new THREE.Color(t.s),wireframe:true,transparent:true,opacity:.35});
+  var mesh2 = new THREE.Mesh(geo2,mat2);
+  scene.add(mesh2);
+
+  // No torus rings (removed)
+
+  // Lights
+  var pl = new THREE.PointLight(new THREE.Color(t.p),2.5,120);
+  pl.position.set(4,4,6);
+  scene.add(pl);
+  var pl2 = new THREE.PointLight(new THREE.Color(t.s),1.5,80);
+  pl2.position.set(-4,-3,3);
+  scene.add(pl2);
+  scene.add(new THREE.AmbientLight(0xffffff,.2));
+
+  window._three = {mat:mat,mat2:mat2,scene:scene,pl:pl,pl2:pl2};
+
+  (function animate(){
+    requestAnimationFrame(animate);
+    mesh.rotation.x  += .004;
+    mesh.rotation.y  += .007;
+    mesh2.rotation.x -= .006;
+    mesh2.rotation.y += .009;
+    renderer.render(scene,cam);
+  })();
+}
+
+/* ══ SKILLS ═════════════════════════════════════════════════════════ */
+var SKILLS=[
+  {n:'JavaScript / TypeScript', pct:90},
+  {n:'React / Vue.js',          pct:85},
+  {n:'Python / Django',         pct:80},
+  {n:'Power BI / Tableau',      pct:88},
+  {n:'SQL / PostgreSQL',        pct:85},
+  {n:'Node.js / REST APIs',     pct:82}
+];
+function buildSkills(){
+  var w=document.getElementById('skills-wrap');
+  if(!w) return;
+  w.innerHTML=SKILLS.map(function(s){
+    return '<div class="skill-row rev">'+
+      '<div class="skill-hd"><span>'+s.n+'</span><span>'+s.pct+'%</span></div>'+
+      '<div class="skill-bar"><div class="skill-fill" data-pct="'+s.pct+'"></div></div>'+
+    '</div>';
+  }).join('');
+}
+
+/* ══ SERVICES ════════════════════════════════════════════════════════ */
+var SERVICES=[
+  {fa:'fas fa-globe',             t:'Web App Development',     d:'Full-stack applications with React, Vue, Django & Node.'},
+  {fa:'fas fa-users-cog',         t:'HRMS Implementation',     d:'Custom HR systems: payroll, attendance, leave & appraisals.'},
+  {fa:'fas fa-handshake',         t:'CRM Solutions',           d:'Salesforce, Zoho CRM configuration & custom CRM builds.'},
+  {fa:'fas fa-chart-bar',         t:'Power BI Dashboards',     d:'Real-time analytics, KPI tracking & interactive reports.'},
+  {fa:'fas fa-plug',              t:'API Integration',         d:'REST/GraphQL APIs, third-party integrations & microservices.'},
+  {fa:'fas fa-database',          t:'Database Design',         d:'PostgreSQL, MySQL, MongoDB — optimized schemas & queries.'},
+  {fa:'fab fa-python',            t:'Python Automation',       d:'Web scraping, task automation, data pipelines & scripts.'},
+  {fa:'fas fa-cloud',             t:'Cloud Deployment',        d:'AWS, Azure & Vercel deployments with CI/CD pipelines.'},
+  {fa:'fas fa-shield-alt',        t:'Security Consulting',     d:'Vulnerability assessment, auth systems & data protection.'},
+  {fa:'fas fa-mobile-alt',        t:'Progressive Web Apps',    d:'Offline-first PWAs with service workers & push notifications.'},
+  {fa:'fas fa-diagram-project',   t:'IT Project Management',   d:'Agile delivery, sprint planning & stakeholder communication.'},
+  {fa:'fas fa-chalkboard-teacher',t:'Tech Training',           d:'Team upskilling on modern web tech, Power BI & Python.'},
+  {fa:'fas fa-robot',             t:'Workflow Automation',     d:'Business process automation using RPA, Python & Zapier.'},
+  {fa:'fas fa-palette',           t:'UI/UX Design',            d:'Figma prototyping, responsive design & user research.'}
+];
+function buildServices(){
+  var g=document.getElementById('srv-grid');
+  if(!g) return;
+  var t=TH[curT];
+  g.innerHTML=SERVICES.map(function(s,i){
+    var dl=(i%4)*.1;
+    return '<div class="srv-card glass rev" style="transition-delay:'+dl+'s" onmousemove="tilt(event,this)" onmouseleave="untilt(this)">'+
+      '<div class="srv-icon" style="background:'+t.p+'18;color:'+t.p+'"><i class="'+s.fa+'"></i></div>'+
+      '<h3>'+s.t+'</h3><p>'+s.d+'</p>'+
+    '</div>';
+  }).join('');
+}
+function tilt(e,el){
+  var r=el.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+  el.style.transform='perspective(600px) rotateX('+((y/r.height-.5)*16)+'deg) rotateY('+(-(x/r.width-.5)*16)+'deg) scale(1.03)';
+}
+function untilt(el){el.style.transform='';}
+
+/* ══ PROJECTS ════════════════════════════════════════════════════════ */
+var PROJS=[
+  {n:'Inventory Management System', cat:'Web App',    tech:'Java Script, Google Sheet',    d:'2025',url:'https://mandalanil23.github.io/Jainco-Buildcon-inventory-management-system-design/'},
+  {n:'Attendance with Live Location', cat:'Web App',  tech:'Java Script, Google Sheet',    d:'2026',url:'https://mandalanil23.github.io/Attendance-With-Live-Location/'},
+  {n:'HR Management System',        cat:'HRMS',       tech:'Vue.js, Node.js, MySQL',       d:'2026',url:'https://mandalanil23.github.io/HRMS/'},
+  {n:'Material Requisition Form',   cat:'Web App',    tech:'Java Script, Google Sheet',    d:'2026',url:'https://mandalanil23.github.io/Material-Requisition-Form/'},
+  {n:'Sales CRM Dashboard',         cat:'CRM',        tech:'Salesforce, JS, REST API',     d:'2023',url:'#'},
+  {n:'Revenue Analytics Platform',  cat:'Power BI',   tech:'Power BI, DAX, Azure SQL',     d:'2024',url:'#'},
+  {n:'E-Commerce Admin Portal',     cat:'Web App',    tech:'Next.js, Stripe, MongoDB',     d:'2023',url:'#'},
+  {n:'Employee Self-Service App',   cat:'HRMS',       tech:'React Native, Firebase',       d:'2023',url:'#'},
+  {n:'Lead Management Tool',        cat:'CRM',        tech:'Zoho CRM, Python, Zapier',     d:'2022',url:'#'},
+  {n:'Supply Chain Dashboard',      cat:'Power BI',   tech:'Power BI, SQL Server, Python', d:'2024',url:'#'},
+  {n:'Hospital Info System',        cat:'Web App',    tech:'React, FastAPI, PostgreSQL',   d:'2022',url:'#'},
+  {n:'ERP Suite for Manufacturing', cat:'Web App',    tech:'React, Django, PostgreSQL',    d:'2024',url:'#'},
+  {n:'Payroll Automation Bot',      cat:'Automation', tech:'Python, RPA, Excel, SMTP',     d:'2023',url:'#'}
+];
+var CATS=['All','Web App','HRMS','CRM','Power BI','Automation'];
+var actCat='All';
+function buildFilters(){
+  var pf=document.getElementById('pfilters');
+  if(!pf) return;
+  pf.innerHTML=CATS.map(function(c){
+    return '<button class="fb'+(c===actCat?' on':'')+'" onclick="setFilter(\''+c+'\')">'+c+'</button>';
+  }).join('');
+}
+function setFilter(c){actCat=c;buildFilters();filterP();}
+function filterP(){
+  var q=(document.getElementById('sin')?document.getElementById('sin').value:'').toLowerCase().trim();
+  var rows=PROJS.filter(function(p){
+    return (actCat==='All'||p.cat===actCat)&&(!q||p.n.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)||p.tech.toLowerCase().includes(q));
+  });
+  var tb=document.getElementById('ptb');
+  if(!tb) return;
+  if(!rows.length){tb.innerHTML='<tr><td colspan="5" class="nores">No projects found.</td></tr>';return;}
+  tb.innerHTML=rows.map(function(p,i){
+    return '<tr class="rowin" style="animation-delay:'+(i*.05)+'s">'+
+      '<td class="pn">'+p.n+'</td>'+
+      '<td><span class="pc">'+p.cat+'</span></td>'+
+      '<td class="pt">'+p.tech+'</td>'+
+      '<td class="pd">'+p.d+'</td>'+
+      '<td><a href="'+p.url+'" target="_blank" class="vbtn">View <i class="fas fa-external-link-alt" style="font-size:10px"></i></a></td>'+
+    '</tr>';
+  }).join('');
+}
+
+/* ══ CONTACT FORM ════════════════════════════════════════════════════ */
+function doSubmit(e){
+  e.preventDefault();
+  var btn=document.getElementById('subbtn');
+  btn.innerHTML='Sent! <i class="fas fa-check-circle"></i>';
+  btn.style.background='linear-gradient(135deg,#22c55e,#16a34a)';
+  showConfetti();
+  e.target.reset();
+  setTimeout(function(){btn.innerHTML='Send Message <i class="fas fa-paper-plane"></i>';btn.style.background='';},3500);
+}
+function showConfetti(){
+  var t=TH[curT];
+  var cols=[t.p,t.s,t.a,'#fff','#ffd700'];
+  var con=document.getElementById('confbox');
+  if(!con) return;
+  con.innerHTML=Array.from({length:55},function(_,i){
+    var c=cols[i%cols.length],l=Math.random()*100,sz=5+Math.random()*10;
+    var dur=1.5+Math.random()*2,dl=Math.random()*.6,br=Math.random()>.5?'50%':'3px';
+    return '<div class="cp" style="left:'+l+'%;width:'+sz+'px;height:'+sz+'px;border-radius:'+br+';background:'+c+';animation:confDrop '+dur+'s linear '+dl+'s forwards"></div>';
+  }).join('');
+  setTimeout(function(){con.innerHTML='';},4500);
+}
+
+/* ══ SCROLL REVEAL ═══════════════════════════════════════════════════ */
+function initReveal(){
+  if(!('IntersectionObserver' in window)){
+    document.querySelectorAll('.rev').forEach(function(el){el.classList.add('on');});
+    return;
+  }
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});
+  },{threshold:.1});
+  document.querySelectorAll('.rev').forEach(function(el){obs.observe(el);});
+}
+
+/* ══ COUNTERS ════════════════════════════════════════════════════════ */
+function initCounters(){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el=e.target,target=+el.dataset.count,dur=1600,start=Date.now();
+      obs.unobserve(el);
+      (function tick(){
+        var p=Math.min((Date.now()-start)/dur,1);
+        el.textContent=Math.round(target*p)+(target===100?'%':'+');
+        if(p<1) requestAnimationFrame(tick);
+      })();
+    });
+  },{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(function(el){obs.observe(el);});
+}
+
+/* ══ SKILL BARS ══════════════════════════════════════════════════════ */
+function initSkillBars(){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      obs.unobserve(e.target);
+      e.target.style.width=e.target.dataset.pct+'%';
+    });
+  },{threshold:.3});
+  document.querySelectorAll('.skill-fill').forEach(function(el){obs.observe(el);});
+}
+
+/* ══ NAVBAR SCROLL ═══════════════════════════════════════════════════ */
+window.addEventListener('scroll',function(){
+  document.getElementById('nav').classList.toggle('scr',window.scrollY>60);
+});
+
+/* ══ INIT ════════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded',function(){
+  buildSkills();
+  buildServices();
+  buildFilters();
+  filterP();
+  setTheme(curT);
+  initTW();
+  initThree();
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      initReveal();
+      initCounters();
+      initSkillBars();
+    });
+  });
+  setTimeout(function(){
+    var ld=document.getElementById('ld');
+    if(ld) ld.classList.add('out');
+  },1600);
+});
+</script>
+</body>
+</html>
