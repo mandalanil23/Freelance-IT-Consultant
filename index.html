@@ -281,20 +281,117 @@ footer p{color:var(--tm);font-size:13px}
 #wa{position:fixed;bottom:28px;left:28px;z-index:800;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;background:#25D366;animation:wap 2s infinite;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s}
 #wa:hover{transform:scale(1.12)}
 
+/* ══ TABLET (max 960px) ══════════════════════════════════════════════ */
 @media(max-width:960px){
   .hero-in,.about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
   .hero-3d{display:none}
-  #th-bar{right:8px}
   .links{display:none}
   .ham{display:flex}
   .about-grid{text-align:center}
   .profile-wrap{margin-bottom:20px}
   .stats-row{justify-content:center}
+  .sec{padding:70px 0}
+
+  /* Theme toggle — move to bottom-right on tablet */
+  #th-bar{
+    top:auto;bottom:90px;right:12px;transform:none;
+    flex-direction:column;gap:6px
+  }
+
+  /* Portfolio table — horizontal scroll */
+  .glass[style*="border-radius:16px"]{overflow-x:auto !important}
+  .ptbl{min-width:560px}
+
+  /* Contact form padding */
+  .cform{padding:24px}
 }
+
+/* ══ MOBILE (max 600px) ══════════════════════════════════════════════ */
 @media(max-width:600px){
+  /* Wrapper & Sections */
+  .W{padding:0 16px}
+  .sec{padding:52px 0}
+  .sh{margin-bottom:36px}
+  .sh h2{font-size:clamp(22px,7vw,32px)}
+
+  /* Navbar */
+  #nav{padding:14px 0}
+  .logo{font-size:18px}
+
+  /* Hero */
+  .hero-in{padding-top:72px;gap:28px}
+  .hero-h1{font-size:clamp(28px,8vw,42px) !important}
+  .hero-sub{font-size:14px;margin-bottom:24px}
+  .hero-btns{gap:10px}
+  .btn-p,.btn-o{padding:11px 22px;font-size:13px}
+  .hero-scroll{bottom:18px}
+
+  /* About — profile */
   .srv-grid{grid-template-columns:1fr}
-  .profile-wrap{width:300px;height:300px}
-  .photo-circle{width:160px;height:160px}
+  .profile-wrap{width:240px;height:240px}
+  .photo-circle{width:130px;height:130px}
+
+  /* Orbit chips — hide on very small screens to avoid overflow */
+  .tech-orbit{display:none}
+
+  /* Stats */
+  .stats-row{gap:16px}
+  .stat-num{font-size:26px}
+
+  /* Services */
+  .srv-card{padding:20px}
+  .srv-icon{width:44px;height:44px;font-size:18px}
+
+  /* Portfolio — table → card layout */
+  .ptbl thead{display:none}
+  .ptbl,.ptbl tbody,.ptbl tr,.ptbl td{display:block;width:100%}
+  .ptbl tr{
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:12px;margin-bottom:12px;
+    padding:14px;background:var(--card)
+  }
+  .ptbl td{
+    padding:5px 0;border:none;
+    display:flex;align-items:flex-start;gap:8px;font-size:13px
+  }
+  .ptbl td::before{
+    content:attr(data-label);
+    font-size:10px;font-weight:700;text-transform:uppercase;
+    letter-spacing:1px;color:var(--tm);min-width:64px;flex-shrink:0;
+    padding-top:2px
+  }
+  .ptbl td.nores{display:block}
+
+  /* Search input full width */
+  .srch-row{justify-content:flex-start}
+  #sin{width:100%}
+
+  /* Filter buttons */
+  .pfilters{gap:6px}
+  .fb{padding:6px 14px;font-size:11px}
+
+  /* Contact */
+  .contact-grid{gap:32px}
+  .cform{padding:20px;border-radius:16px}
+  .cform h3{font-size:17px;margin-bottom:18px}
+  .fg input,.fg textarea,.fg select{font-size:14px}
+
+  /* Theme bar — smaller dots, bottom-right */
+  #th-bar{
+    bottom:80px;right:10px;top:auto;transform:none;
+    flex-direction:row;gap:5px;
+    background:rgba(0,0,0,.35);backdrop-filter:blur(8px);
+    padding:6px 8px;border-radius:50px;border:1px solid rgba(255,255,255,.08)
+  }
+  .th-btn{width:18px;height:18px}
+
+  /* WhatsApp button */
+  #wa{width:46px;height:46px;font-size:20px;bottom:20px;left:16px}
+
+  /* Footer */
+  footer{padding:28px 0}
+  footer p{font-size:12px}
+  .foot-soc{gap:12px}
 }
 </style>
 </head>
@@ -835,11 +932,11 @@ function filterP(){
   if(!rows.length){tb.innerHTML='<tr><td colspan="5" class="nores">No projects found.</td></tr>';return;}
   tb.innerHTML=rows.map(function(p,i){
     return '<tr class="rowin" style="animation-delay:'+(i*.05)+'s">'+
-      '<td class="pn">'+p.n+'</td>'+
-      '<td><span class="pc">'+p.cat+'</span></td>'+
-      '<td class="pt">'+p.tech+'</td>'+
-      '<td class="pd">'+p.d+'</td>'+
-      '<td><a href="'+p.url+'" target="_blank" class="vbtn">View <i class="fas fa-external-link-alt" style="font-size:10px"></i></a></td>'+
+      '<td class="pn" data-label="Project">'+p.n+'</td>'+
+      '<td data-label="Category"><span class="pc">'+p.cat+'</span></td>'+
+      '<td class="pt" data-label="Tech Stack">'+p.tech+'</td>'+
+      '<td class="pd" data-label="Year">'+p.d+'</td>'+
+      '<td data-label="Link"><a href="'+p.url+'" target="_blank" class="vbtn">View <i class="fas fa-external-link-alt" style="font-size:10px"></i></a></td>'+
     '</tr>';
   }).join('');
 }
